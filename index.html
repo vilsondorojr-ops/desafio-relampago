@@ -16,7 +16,21 @@
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:14px;width:100%;max-width:300px;font-size:11px;font-weight:900">
 <div>🟢 FÁCIL</div><div>🔵 INTERMEDIÁRIO</div><div>🔴 DIFÍCIL</div><div>🟣 MUITO DIFÍCIL</div>
 </div>
-<div id="theme" class="theme">Preparando...</div><button id="spin" class="btn" onclick="spin()">GIRAR ROLETA</button></div>
+<div id="theme" class="theme">Preparando...</div>
+
+<div style="display:flex;justify-content:center;gap:12px;margin:14px 0;">
+  <div style="background:#ffffff18;border:1px solid #ffffff22;border-radius:14px;padding:10px 22px;text-align:center;">
+    <div style="font-size:12px;opacity:.75;">⚡ PONTOS</div>
+    <div id="rouletteScore" style="font-size:24px;font-weight:900;">0</div>
+  </div>
+
+  <div style="background:#ffffff18;border:1px solid #ffffff22;border-radius:14px;padding:10px 22px;text-align:center;">
+    <div style="font-size:12px;opacity:.75;">🔥 COMBO</div>
+    <div id="rouletteCombo" style="font-size:24px;font-weight:900;">0</div>
+  </div>
+</div>
+
+<button id="spin" class="btn" onclick="spin()">GIRAR ROLETA</button>
 </section>
 <section id="game" class="screen hide">
 <div class="top"><div class="pill">⚡ <b id="score">0</b></div><div class="pill">🔥 x<b id="combo">0</b></div><div class="pill">⏱️ <b id="time">60</b>s</div></div>
