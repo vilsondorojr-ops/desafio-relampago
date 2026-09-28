@@ -47,10 +47,7 @@ function chooseQuestion(){
   current=pool[Math.floor(Math.random()*pool.length)];
   seen.add(current.id);
 }
-  if(!pool.length){pool=DB.filter(x=>!seen.has(x.id))}
-  current=pool[Math.floor(Math.random()*pool.length)];
-  seen.add(current.id);
-
+  
 function render(){locked=false;chooseQuestion();if(current.nivel!==currentLevel){throw new Error('ERRO DE INTEGRIDADE: nível incompatível');}$('kind').textContent='🎯 '+current.tema;let lv={'fácil':'🟢 FÁCIL','intermediário':'🔵 INTERMEDIÁRIO','difícil':'🔴 DIFÍCIL','muito difícil':'🟣 MUITO DIFÍCIL'}[current.nivel]||current.nivel.toUpperCase();$('levelBadge').textContent=lv;$('question').textContent=current.q;$('feedback').textContent='';$('feedback').className='feedback';let box=$('answers');box.innerHTML='';shuffle(current.a.map((v,i)=>({v,i}))).forEach(x=>{let b=document.createElement('button');b.className='ans';b.textContent=x.v;b.onclick=()=>answer(b,x.i);box.appendChild(b)})}
 function answer(btn,i){if(locked)return;locked=true;let ok=i===current.c;if(ok){combo++;hits++;maxCombo=Math.max(maxCombo,combo);let gain=100+Math.min(combo,10)*20+({'fácil':0,'intermediário':30,'difícil':70,'muito difícil':120}[current.nivel]||0);score+=gain;btn.classList.add('ok');$('feedback').textContent='+'+gain+' • ACERTOU!';$('feedback').className='feedback good'}else{combo=0;score=Math.max(0,score-30);btn.classList.add('no');$('feedback').textContent='COMBO QUEBRADO';$('feedback').className='feedback bad'}$('score').textContent=score;$('combo').textContent=combo;setTimeout(()=>{if(Date.now()-startAt<60000){nextTheme();}},260)}
 function nextTheme(){$('game').classList.add('hide');$('roulette').classList.remove('hide');$('spin').disabled=false;$('spin').textContent='GIRAR NOVAMENTE';$('theme').textContent='Que tema vem agora?';$('wheel').style.transform='rotate(0deg)'}
